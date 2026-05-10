@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peravali Foods – Pure Home Made</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron:    #E8890C;
+    --deep-red:   #9B1C1C;
+    --turmeric:   #F5C842;
+    --clay:       #C1440E;
+    --cream:      #FDF6EC;
+    --dark:       #1A0A00;
+    --muted:      #6B4226;
+    --card-bg:    #FFF8F0;
+    --border:     rgba(200,100,20,0.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(198,68,14,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 20% 10%, rgba(232,137,12,0.12) 0%, transparent 60%),
+      var(--cream);
+    padding: 4rem 2rem 6rem;
+  }
+
+  /* decorative spice rings */
+  .hero-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid rgba(198,68,14,0.12);
+    pointer-events: none;
+  }
+  .hero-ring:nth-child(1) { width: 500px; height: 500px; top: -120px; right: -180px; }
+  .hero-ring:nth-child(2) { width: 340px; height: 340px; bottom: 40px; left: -100px; border-style: dashed; opacity: 0.4; }
+  .hero-ring:nth-child(3) { width: 200px; height: 200px; top: 40%; left: 5%; border-color: var(--turmeric); opacity: 0.2; }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--turmeric);
+    color: var(--dark);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.35rem 1.2rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    animation: fadeDown 0.7s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 9vw, 7rem);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--clay);
+    animation: fadeDown 0.8s 0.1s ease both;
+  }
+  .hero h1 span { color: var(--saffron); font-style: italic; }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--muted);
+    margin-top: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    animation: fadeDown 0.9s 0.2s ease both;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem auto;
+    width: fit-content;
+    animation: fadeDown 1s 0.3s ease both;
+  }
+  .hero-divider::before, .hero-divider::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: var(--saffron);
+  }
+  .hero-divider span { font-size: 1.3rem; }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.5rem;
+    animation: fadeDown 1s 0.4s ease both;
+  }
+
+  .btn-primary {
+    background: var(--clay);
+    color: #fff;
+    border: none;
+    padding: 0.85rem 2.2rem;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--deep-red); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--clay);
+    border: 1.5px solid var(--clay);
+    padding: 0.85rem 2.2rem;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-outline:hover { background: var(--clay); color: #fff; transform: translateY(-2px); }
+
+  /* spice icons strip */
+  .spice-strip {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeDown 1s 0.5s ease both;
+  }
+  .spice-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .spice-icon { font-size: 2rem; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(253,246,236,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--clay);
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--clay); }
+
+  /* ── SECTION TITLE ── */
+  .section-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    color: var(--clay);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--saffron); }
+  .section-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 3rem;
+    max-width: 500px;
+  }
+
+  /* ── CATEGORY TABS ── */
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+  .tab {
+    padding: 0.5rem 1.3rem;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+  }
+  .tab.active, .tab:hover {
+    background: var(--clay);
+    color: #fff;
+    border-color: var(--clay);
+  }
+
+  /* ── PRODUCT GRID ── */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(155,28,28,0.1);
+  }
+
+  /* ── PRODUCT IMAGE ── */
+  /* Each product has its own image variable for easy editing */
+  .product-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    background: linear-gradient(135deg, #f8e8d0 0%, #f0d0a0 100%);
+  }
+
+  /* Fallback emoji thumbnail when no real image is set */
+  .product-img-placeholder {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    /* per-card background set via inline style */
+  }
+
+  .product-body { padding: 1.1rem 1.2rem 1.4rem; }
+  .product-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+  .product-price {
+    display: inline-block;
+    background: var(--turmeric);
+    color: var(--dark);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.25rem 0.8rem;
+    border-radius: 100px;
+  }
+  .product-price-hot {
+    background: var(--deep-red);
+    color: #fff;
+  }
+
+  /* ── DIVIDER BANNER ── */
+  .banner-divider {
+    background: var(--clay);
+    color: #fff;
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .banner-divider::before {
+    content: '🌶️🌿🍋🥭🦐🐓🐑';
+    position: absolute;
+    font-size: 5rem;
+    opacity: 0.06;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    letter-spacing: 1rem;
+    white-space: nowrap;
+  }
+  .banner-divider h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+  .banner-divider p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    opacity: 0.8;
+  }
+
+  /* ── WHATSAPP FLOAT ── */
+  .whatsapp-fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #25D366;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 100px;
+    padding: 0.8rem 1.4rem 0.8rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: pulse-fab 2.5s infinite;
+  }
+  .whatsapp-fab:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 12px 30px rgba(37,211,102,0.5);
+  }
+  .whatsapp-fab svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+
+  @keyframes pulse-fab {
+    0%, 100% { box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
+    50%        { box-shadow: 0 8px 32px rgba(37,211,102,0.65); }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 0.85rem;
+    line-height: 2;
+    position: relative;
+    z-index: 1;
+  }
+  footer strong { color: var(--turmeric); }
+  footer a { color: var(--saffron); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* section entrance */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .product-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .product-img-placeholder { height: 130px; font-size: 3rem; }
+    .product-img { height: 130px; }
+    .product-name { font-size: 0.9rem; }
+    .whatsapp-fab span { display: none; }
+    .whatsapp-fab { padding: 0.9rem; border-radius: 50%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<nav>
+  <div class="nav-logo">Peravali Foods</div>
+  <ul class="nav-links">
+    <li><a href="#veg-pickles">Veg Pickles</a></li>
+    <li><a href="#nonveg-pickles">Non-Veg Pickles</a></li>
+    <li><a href="#karam-podulu">Karam Podulu</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero">
+  <div class="hero-ring"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring"></div>
+
+  <div class="hero-badge">✦ Pure Home Made Foods ✦</div>
+  <h1>Peravali<br><span>Foods</span></h1>
+  <p class="hero-sub">Authentic Andhra Pickles &amp; Spice Powders — Made with Love &amp; Tradition</p>
+
+  <div class="hero-divider">
+    <span>🌶️</span>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#veg-pickles" class="btn-primary">🥭 Explore Menu</a>
+    <!-- WHATSAPP NUMBER: Replace 919705161055 with your number (country code + number, no +) -->
+    <a href="https://wa.me/919705161055?text=Hi%20Peravali%20Foods!%20I%20saw%20your%20menu%20and%20would%20like%20to%20place%20an%20order%20🌶️" target="_blank" class="btn-outline">💬 Order on WhatsApp</a>
+  </div>
+
+  <div class="spice-strip">
+    <div class="spice-item"><span class="spice-icon">🥭</span>Avakaya</div>
+    <div class="spice-item"><span class="spice-icon">🌿</span>Gongura</div>
+    <div class="spice-item"><span class="spice-icon">🦐</span>Royyala</div>
+    <div class="spice-item"><span class="spice-icon">🐓</span>Chicken</div>
+    <div class="spice-item"><span class="spice-icon">🌶️</span>Karam</div>
+    <div class="spice-item"><span class="spice-icon">🧄</span>Velluli</div>
+  </div>
+</section>
+
+<!-- ══════════════════ VEG PICKLES ══════════════════ -->
+<section id="veg-pickles">
+  <div class="section-wrap">
+    <p class="section-label reveal">Garden Fresh</p>
+    <h2 class="section-title reveal">Veg <em>Pickles</em></h2>
+    <p class="section-desc reveal">Traditional Andhra-style pickles bursting with tanginess and spice.</p>
+
+    <div class="product-grid">
+
+      <!-- ── VEG PICKLE CARDS ──
+           To replace an image: change the src="" of the <img> tag in each card.
+           If no image is available, the emoji placeholder is shown automatically.
+           Each card is clearly labelled with the product name in a comment above it.
+      -->
+
+      <!-- Allam Bellam Pandumirchi Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffe0a0,#ffb347);">🌶️</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Allam Bellam Pandumirchi Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Allam Bellam Pandumirchi Pickle</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Allam Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#f0e68c,#d4a017);">🧄</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Allam Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Allam Pickle</div>
+          <span class="product-price">₹750 / kg</span>
+        </div>
+      </div>
+
+      <!-- Avakaya (Mango) Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffe066,#ff9900);">🥭</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Avakaya Mango Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Avakaya (Mango) Pickle</div>
+          <span class="product-price">₹750 / kg</span>
+        </div>
+      </div>
+
+      <!-- Avakaya Chinna Mukkala Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffe066,#e67e22);">🥭</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Avakaya Chinna Mukkala Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Avakaya Chinna Mukkala Pickle</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Avakaya With Nuvvula Nune -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#f5deb3,#daa520);">🌰</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Avakaya With Nuvvula Nune"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Avakaya With Nuvvula Nune</div>
+          <span class="product-price">₹850 / kg</span>
+        </div>
+      </div>
+
+      <!-- Bellam Avakaya Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffd700,#c8860a);">🍯</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Bellam Avakaya Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Bellam Avakaya Pickle</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Cauliflower Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#f5f5dc,#d2b48c);">🥦</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Cauliflower Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Cauliflower Pickle</div>
+          <span class="product-price">₹700 / kg</span>
+        </div>
+      </div>
+
+      <!-- Chintakaaya Pandumirchi Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffcc66,#cc4400);">🌿</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Chintakaaya Pandumirchi Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Chintakaaya Pandumirchi Pickle</div>
+          <span class="product-price">₹750 / kg</span>
+        </div>
+      </div>
+
+      <!-- Chinta Thokku (raw) -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffd580,#b5651d);">🌱</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Chinta Thokku raw"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Chinta Thokku (raw)</div>
+          <span class="product-price">₹600 / kg</span>
+        </div>
+      </div>
+
+      <!-- Dabbakaaya Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#c8f7c5,#27ae60);">🍈</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Dabbakaaya Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Dabbakaaya Pickle</div>
+          <span class="product-price">₹750 / kg</span>
+        </div>
+      </div>
+
+      <!-- Dosa Avakaya Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffe0b2,#ff6600);">🥭</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Dosa Avakaya Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Dosa Avakaya Pickle</div>
+          <span class="product-price">₹750 / kg</span>
+        </div>
+      </div>
+
+      <!-- Gongura Pandumirchi Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#c8f7c5,#e74c3c);">🌿</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Gongura Pandumirchi Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Gongura Pandumirchi Pickle</div>
+          <span class="product-price">₹750 / kg</span>
+        </div>
+      </div>
+
+      <!-- Kakarakaaya Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#d4edda,#28a745);">🥒</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Kakarakaaya Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Kakarakaaya Pickle</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Maagaya Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffe066,#ff7700);">🥭</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Maagaya Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Maagaya Pickle</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Mamidi Allam Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffe066,#a0522d);">🥭</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Mamidi Allam Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Mamidi Allam Pickle</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Mamidikaya Mamidi Allam Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffd700,#8b4513);">🥭</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Mamidikaya Mamidi Allam Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Mamidikaya Mamidi Allam Pickle</div>
+          <span class="product-price">₹850 / kg</span>
+        </div>
+      </div>
+
+      <!-- Mango Thurumu Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffe066,#cc6600);">🥭</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Mango Thurumu Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Mango Thurumu Pickle</div>
+          <span class="product-price">₹950 / kg</span>
+        </div>
+      </div>
+
+      <!-- Munakaya Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#c8f7c5,#2e8b57);">🪴</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Munakaya Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Munakaya Pickle</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Mushroom Pickle (button) -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#e8d5c4,#8b5e3c);">🍄</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Mushroom Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Mushroom Pickle (button)</div>
+          <span class="product-price product-price-hot">₹1200 / kg</span>
+        </div>
+      </div>
+
+      <!-- Nimmakaya Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#fffde7,#f9a825);">🍋</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Nimmakaya Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Nimmakaya Pickle</div>
+          <span class="product-price">₹750 / kg</span>
+        </div>
+      </div>
+
+      <!-- Nuvvula Avakaya -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#f5deb3,#ff8c00);">🌰</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Nuvvula Avakaya"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Nuvvula Avakaya</div>
+          <span class="product-price">₹900 / kg</span>
+        </div>
+      </div>
+
+      <!-- Pandumirchi Thokku (raw) -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffcdd2,#b71c1c);">🌶️</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Pandumirchi Thokku raw"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Pandumirchi Thokku (raw)</div>
+          <span class="product-price">₹600 / kg</span>
+        </div>
+      </div>
+
+      <!-- Pandumirchi Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffccbc,#e64a19);">🌶️</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Pandumirchi Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Pandumirchi Pickle</div>
+          <span class="product-price">₹700 / kg</span>
+        </div>
+      </div>
+
+      <!-- Pulihora Gongura Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#c8f7c5,#388e3c);">🌿</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Pulihora Gongura Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Pulihora Gongura Pickle</div>
+          <span class="product-price">₹750 / kg</span>
+        </div>
+      </div>
+
+      <!-- Tomato Pandumirchi Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffcdd2,#c0392b);">🍅</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Tomato Pandumirchi Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Tomato Pandumirchi Pickle</div>
+          <span class="product-price">₹750 / kg</span>
+        </div>
+      </div>
+
+      <!-- Tomato Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ff8a80,#b71c1c);">🍅</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Tomato Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Tomato Pickle</div>
+          <span class="product-price">₹700 / kg</span>
+        </div>
+      </div>
+
+      <!-- Usiri Thokku Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#dcedc8,#558b2f);">🫙</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Usiri Thokku Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Usiri Thokku Pickle</div>
+          <span class="product-price product-price-hot">₹1000 / kg</span>
+        </div>
+      </div>
+
+      <!-- Usiri Thokku (raw) -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#f0f4c3,#827717);">🌱</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Usiri Thokku raw"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Usiri Thokku (raw)</div>
+          <span class="product-price">₹900 / kg</span>
+        </div>
+      </div>
+
+      <!-- Usiri Kaya Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#d7ccc8,#5d4037);">🫙</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Usiri Kaya Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Usiri Kaya Pickle</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Velluli Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#fff9c4,#f57f17);">🧄</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Velluli Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Veg Pickle</div>
+          <div class="product-name">Velluli Pickle</div>
+          <span class="product-price">₹900 / kg</span>
+        </div>
+      </div>
+
+    </div><!-- /product-grid -->
+  </div>
+</section>
+
+<!-- ══════════════════ BANNER ══════════════════ -->
+<div class="banner-divider">
+  <h2>"Made fresh, packed with tradition."</h2>
+  <p>No preservatives. No artificial colours. Just pure home-made goodness.</p>
+</div>
+
+<!-- ══════════════════ NON-VEG PICKLES ══════════════════ -->
+<section id="nonveg-pickles">
+  <div class="section-wrap">
+    <p class="section-label reveal">Bold & Meaty</p>
+    <h2 class="section-title reveal">Non-Veg <em>Pickles</em></h2>
+    <p class="section-desc reveal">Rich, slow-cooked pickles with the finest meats and the boldest Andhra spices.</p>
+
+    <div class="product-grid">
+
+      <!-- ── NON-VEG PICKLE CARDS ──
+           To replace an image: uncomment the <img> line and add your src URL.
+           Comment out the .product-img-placeholder div above it.
+      -->
+
+      <!-- Chicken Bone Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffe0b2,#bf360c);">🐓</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Chicken Bone Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Non-Veg Pickle</div>
+          <div class="product-name">Chicken Bone Pickle</div>
+          <span class="product-price">₹1100 / kg</span>
+        </div>
+      </div>
+
+      <!-- Chicken Boneless Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffccbc,#d84315);">🍗</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Chicken Boneless Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Non-Veg Pickle</div>
+          <div class="product-name">Chicken Boneless Pickle</div>
+          <span class="product-price">₹1400 / kg</span>
+        </div>
+      </div>
+
+      <!-- Chicken Thurumu Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffab91,#bf360c);">🐓</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Chicken Thurumu Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Non-Veg Pickle</div>
+          <div class="product-name">Chicken Thurumu Pickle</div>
+          <span class="product-price product-price-hot">₹1600 / kg</span>
+        </div>
+      </div>
+
+      <!-- Gongura Chicken Boneless Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#a5d6a7,#c62828);">🌿🐓</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Gongura Chicken Boneless Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Non-Veg Pickle</div>
+          <div class="product-name">Gongura Chicken Boneless Pickle</div>
+          <span class="product-price product-price-hot">₹1600 / kg</span>
+        </div>
+      </div>
+
+      <!-- Mutton Bone Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffccbc,#4e342e);">🐑</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Mutton Bone Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Non-Veg Pickle</div>
+          <div class="product-name">Mutton Bone Pickle</div>
+          <span class="product-price product-price-hot">₹2000 / kg</span>
+        </div>
+      </div>
+
+      <!-- Mutton Boneless Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ff8a65,#3e2723);">🥩</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Mutton Boneless Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Non-Veg Pickle</div>
+          <div class="product-name">Mutton Boneless Pickle</div>
+          <span class="product-price product-price-hot">₹2500 / kg</span>
+        </div>
+      </div>
+
+      <!-- Mutton Keema Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffab91,#bf360c);">🥩</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Mutton Keema Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Non-Veg Pickle</div>
+          <div class="product-name">Mutton Keema Pickle</div>
+          <span class="product-price product-price-hot">₹2200 / kg</span>
+        </div>
+      </div>
+
+      <!-- Gongura Mutton Bone Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#a5d6a7,#5d4037);">🌿🐑</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Gongura Mutton Bone Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Non-Veg Pickle</div>
+          <div class="product-name">Gongura Mutton Bone Pickle</div>
+          <span class="product-price product-price-hot">₹2200 / kg</span>
+        </div>
+      </div>
+
+      <!-- Gongura Mutton Boneless Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#c8e6c9,#4e342e);">🌿🥩</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Gongura Mutton Boneless Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Non-Veg Pickle</div>
+          <div class="product-name">Gongura Mutton Boneless Pickle</div>
+          <span class="product-price product-price-hot">₹2500 / kg</span>
+        </div>
+      </div>
+
+      <!-- Gongura Mutton Boti Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#b2dfdb,#4e342e);">🌿🍖</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Gongura Mutton Boti Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Non-Veg Pickle</div>
+          <div class="product-name">Gongura Mutton Boti Pickle</div>
+          <span class="product-price product-price-hot">₹2000 / kg</span>
+        </div>
+      </div>
+
+      <!-- Prawns Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffccbc,#e65100);">🦐</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Prawns Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Non-Veg Pickle</div>
+          <div class="product-name">Prawns Pickle</div>
+          <span class="product-price product-price-hot">₹2000 / kg</span>
+        </div>
+      </div>
+
+      <!-- Gongura Prawns Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#c8e6c9,#e65100);">🌿🦐</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Gongura Prawns Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Non-Veg Pickle</div>
+          <div class="product-name">Gongura Prawns Pickle</div>
+          <span class="product-price product-price-hot">₹2200 / kg</span>
+        </div>
+      </div>
+
+      <!-- Royyala Kaaram Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffccbc,#b71c1c);">🦐🌶️</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Royyala Kaaram Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Non-Veg Pickle ✦ Premium</div>
+          <div class="product-name">Royyala Kaaram Pickle</div>
+          <span class="product-price product-price-hot">₹3500 / kg</span>
+        </div>
+      </div>
+
+      <!-- Royya Pottu Kaaram Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffe0b2,#d84315);">🦐</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Royya Pottu Kaaram Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Non-Veg Pickle</div>
+          <div class="product-name">Royya Pottu Kaaram Pickle</div>
+          <span class="product-price product-price-hot">₹1500 / kg</span>
+        </div>
+      </div>
+
+      <!-- Koramenu Fish Boneless Pickle -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#b3e5fc,#0277bd);">🐟</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Koramenu Fish Boneless Pickle"> -->
+        <div class="product-body">
+          <div class="product-tag">Non-Veg Pickle</div>
+          <div class="product-name">Koramenu Fish Boneless Pickle</div>
+          <span class="product-price product-price-hot">₹2500 / kg</span>
+        </div>
+      </div>
+
+    </div><!-- /product-grid -->
+  </div>
+</section>
+
+<!-- ══════════════════ KARAM PODULU ══════════════════ -->
+<section id="karam-podulu" style="background: linear-gradient(180deg, var(--cream) 0%, #fff5e0 100%);">
+  <div class="section-wrap">
+    <p class="section-label reveal">Spice Powders</p>
+    <h2 class="section-title reveal">Karam <em>Podulu</em></h2>
+    <p class="section-desc reveal">Freshly ground spice powders — the soul of Andhra cooking.</p>
+
+    <div class="product-grid">
+
+      <!-- ── KARAM PODI CARDS ──
+           To replace an image: uncomment the <img> line, comment out the placeholder div.
+      -->
+
+      <!-- 3 Sister's Kaaram Podi (Chintaaku, Karivepaku, Munagaku) -->
+      <div class="product-card reveal" style="border-color:var(--turmeric);">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffe082,#e65100);">🌟</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="3 Sisters Kaaram Podi"> -->
+        <div class="product-body">
+          <div class="product-tag" style="color:var(--deep-red);">✦ Signature Blend</div>
+          <div class="product-name">3 Sister's Kaaram Podi</div>
+          <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.5rem; font-family:'Cormorant Garamond',serif;">Chintaaku · Karivepaku · Munagaku</div>
+          <span class="product-price product-price-hot">₹1500 / kg</span>
+        </div>
+      </div>
+
+      <!-- Aviseginjala Kaaram -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#fff9c4,#f57f17);">🌾</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Aviseginjala Kaaram"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Aviseginjala Kaaram</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Chintaaku Kaaram -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#c8e6c9,#33691e);">🌿</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Chintaaku Kaaram"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Chintaaku Kaaram</div>
+          <span class="product-price product-price-hot">₹1500 / kg</span>
+        </div>
+      </div>
+
+      <!-- Gongura Kaaram -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#a5d6a7,#c62828);">🌿</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Gongura Kaaram"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Gongura Kaaram</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Idly Kaaram -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#f5f5f5,#e64a19);">🍚</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Idly Kaaram"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Idly Kaaram</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Kakarakaaya Kaaram -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#dcedc8,#689f38);">🥒</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Kakarakaaya Kaaram"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Kakarakaaya Kaaram</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Kandi Podi -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffe0b2,#ff6f00);">🫘</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Kandi Podi"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Kandi Podi</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Karivepaku Kaaram -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#c8f7c5,#1b5e20);">🍃</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Karivepaku Kaaram"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Karivepaku Kaaram</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Kobbari Kaaram -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#fff8e1,#795548);">🥥</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Kobbari Kaaram"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Kobbari Kaaram</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Kothimeera Kaaram -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#d4edda,#155724);">🌿</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Kothimeera Kaaram"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Kothimeera Kaaram</div>
+          <span class="product-price">₹900 / kg</span>
+        </div>
+      </div>
+
+      <!-- Madupu Kaaram -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffe0b2,#e65100);">🌶️</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Madupu Kaaram"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Madupu Kaaram</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Munagaku Kaaram Podi -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#c8f7c5,#388e3c);">🪴</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Munagaku Kaaram Podi"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Munagaku Kaaram Podi</div>
+          <span class="product-price product-price-hot">₹1000 / kg</span>
+        </div>
+      </div>
+
+      <!-- Nalla Kaaram -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffd54f,#bf360c);">🌶️</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Nalla Kaaram"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Nalla Kaaram</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Nalleru Kaaram -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffe0b2,#4e342e);">🌾</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Nalleru Kaaram"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Nalleru Kaaram</div>
+          <span class="product-price product-price-hot">₹1500 / kg</span>
+        </div>
+      </div>
+
+      <!-- Nuvvula Kaaram Podi -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#f5f5f5,#795548);">🌰</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Nuvvula Kaaram Podi"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Nuvvula Kaaram Podi</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Pacchimirchi Putnala Kaaram – Ghee -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#fffde7,#f9a825);">🫙</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Pacchimirchi Putnala Kaaram Ghee"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Pacchimirchi Putnala Kaaram – Ghee</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Palli Podi -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#ffe0b2,#a1887f);">🥜</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Palli Podi"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Palli Podi</div>
+          <span class="product-price">₹800 / kg</span>
+        </div>
+      </div>
+
+      <!-- Podina Kaaram -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#b2dfdb,#00695c);">🌱</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Podina Kaaram"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Podina Kaaram</div>
+          <span class="product-price">₹900 / kg</span>
+        </div>
+      </div>
+
+      <!-- Putnala Kaaram -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#fff9c4,#f57f17);">🫘</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Putnala Kaaram"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Putnala Kaaram</div>
+          <span class="product-price">₹700 / kg</span>
+        </div>
+      </div>
+
+      <!-- Sonti Kaaram -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#fff3e0,#e65100);">🫚</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Sonti Kaaram"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Sonti Kaaram</div>
+          <span class="product-price product-price-hot">₹1000 / kg</span>
+        </div>
+      </div>
+
+      <!-- Velluli Kaaram -->
+      <div class="product-card reveal">
+        <div class="product-img-placeholder" style="background:linear-gradient(135deg,#fff9c4,#c8860a);">🧄</div>
+        <!-- <img class="product-img" src="YOUR_IMAGE_URL_HERE" alt="Velluli Kaaram"> -->
+        <div class="product-body">
+          <div class="product-tag">Karam Podi</div>
+          <div class="product-name">Velluli Kaaram</div>
+          <span class="product-price">₹850 / kg</span>
+        </div>
+      </div>
+
+    </div><!-- /product-grid -->
+  </div>
+</section>
+
+<!-- ══════════════════ CONTACT / ORDER ══════════════════ -->
+<section id="contact" style="background:var(--dark); color:#fff; text-align:center; padding:5rem 2rem; position:relative; z-index:1;">
+  <p style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--turmeric);margin-bottom:0.5rem;">Place Your Order</p>
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);color:#fff;margin-bottom:1rem;">Order Fresh, <em style="color:var(--saffron);">Delivered to You</em></h2>
+  <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:rgba(255,255,255,0.7);max-width:500px;margin:0 auto 2rem;">
+    All products are made to order — fresh, preservative-free, and packed with authentic Andhra flavour.
+  </p>
+
+  <!-- WHATSAPP NUMBER: Replace 919999999999 with your number below (91 = India country code) -->
+  <a href="https://wa.me/919999999999?text=Hi%20Peravali%20Foods!%20I%20would%20like%20to%20place%20an%20order.%20Please%20share%20the%20available%20items%20and%20delivery%20details%20%F0%9F%8C%B6%EF%B8%8F"
+     target="_blank"
+     style="display:inline-flex;align-items:center;gap:0.75rem;background:#25D366;color:#fff;text-decoration:none;padding:1rem 2.5rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:1rem;transition:transform 0.2s;">
+    <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:#fff;flex-shrink:0"><path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.22-1.58A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.65-.5-5.23-1.44l-.37-.22-3.69.94.99-3.6-.24-.38A9.94 9.94 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.46-7.37c-.3-.15-1.77-.87-2.04-.97s-.47-.15-.67.15-.77.97-.94 1.17-.35.22-.65.07a8.15 8.15 0 0 1-2.4-1.48 9.1 9.1 0 0 1-1.66-2.07c-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5s.05-.38-.02-.52c-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.38-.27.3-1.02 1-1.02 2.43s1.05 2.82 1.2 3.02c.15.2 2.07 3.17 5.01 4.44.7.3 1.25.49 1.67.62.7.22 1.34.19 1.84.12.56-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.43-.08-.12-.28-.2-.57-.35z"/></svg>
+    Order on WhatsApp
+  </a>
+
+  <div style="margin-top:2.5rem;font-size:0.85rem;color:rgba(255,255,255,0.45);line-height:2;">
+    <div>📞 <!-- EDIT PHONE NUMBER BELOW --> 9705161055</div>
+    <div>📧 luckybhargavin3002@gmail.com</div>
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <strong>Peravali Foods</strong> — Pure Home Made Foods<br>
+  Authentic Andhra Pickles &amp; Karam Podulu<br>
+  <span style="opacity:0.4;">© 2026 Peravali Foods. All rights reserved.</span>
+</footer>
+
+<!-- ══════════════════ FLOATING WHATSAPP ══════════════════ -->
+<!-- WHATSAPP NUMBER: Replace 919999999999 below with your number -->
+<a class="whatsapp-fab"
+   href="https://wa.me/919999999999?text=Hi%20Peravali%20Foods!%20I%20would%20like%20to%20order%20some%20pickles%20%F0%9F%8C%B6%EF%B8%8F%20Please%20let%20me%20know%20the%20availability%20and%20delivery%20options."
+   target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.22-1.58A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22c-1.85 0-3.65-.5-5.23-1.44l-.37-.22-3.69.94.99-3.6-.24-.38A9.94 9.94 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.46-7.37c-.3-.15-1.77-.87-2.04-.97s-.47-.15-.67.15-.77.97-.94 1.17-.35.22-.65.07a8.15 8.15 0 0 1-2.4-1.48 9.1 9.1 0 0 1-1.66-2.07c-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5s.05-.38-.02-.52c-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.38-.27.3-1.02 1-1.02 2.43s1.05 2.82 1.2 3.02c.15.2 2.07 3.17 5.01 4.44.7.3 1.25.49 1.67.62.7.22 1.34.19 1.84.12.56-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.43-.08-.12-.28-.2-.57-.35z"/></svg>
+  <span>Order Now</span>
+</a>
+
+<!-- ══════════════════ SCROLL REVEAL JS ══════════════════ -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        // stagger cards within same grid
+        const siblings = [...e.target.parentElement.children].filter(c => c.classList.contains('reveal'));
+        const idx = siblings.indexOf(e.target);
+        e.target.style.transitionDelay = (idx % 4) * 0.07 + 's';
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
